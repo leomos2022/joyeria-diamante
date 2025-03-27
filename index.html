@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joyería Diamante - Colección Exclusiva</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>DIAMANTE</h1>
+            <p>Joyería Fina</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#coleccion">Colección</a></li>
+                <li><a href="#membresia">Membresía</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="inicio" class="hero">
+        <img src="images/diamante.jpg" alt="Joyería Diamante" class="hero-image">
+        <div class="hero-content">
+            <a href="#coleccion" class="btn">Ver Colección</a>
+        </div>
+    </section>
+
+    <section id="coleccion" class="gallery-section">
+        <h2>Nuestras Joyas</h2>
+        <div class="gallery-container" id="gallery">
+            <!-- Las joyas se cargarán dinámicamente con JavaScript -->
+        </div>
+    </section>
+
+    <section id="membresia" class="membership-section">
+        <div class="membership-form">
+            <h2>Únete a Nuestro Programa de Membresía</h2>
+            <p>Recibe beneficios exclusivos y promociones especiales</p>
+            
+            <form id="formMembresia" action="membresia.php" method="POST">
+                <div class="form-group">
+                    <label for="nombre">Nombre Completo:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Correo Electrónico:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="telefono">Teléfono:</label>
+                    <input type="tel" id="telefono" name="telefono">
+                </div>
+                
+                <div class="form-group">
+                    <label for="nacimiento">Fecha de Nacimiento:</label>
+                    <input type="date" id="nacimiento" name="fecha_nacimiento">
+                </div>
+                
+                <div class="form-group">
+                    <label>Preferencias:</label>
+                    <div class="preferences">
+                        <label><input type="checkbox" name="preferencias[]" value="anillos"> Anillos</label>
+                        <label><input type="checkbox" name="preferencias[]" value="collares"> Collares</label>
+                        <label><input type="checkbox" name="preferencias[]" value="pulseras"> Pulseras</label>
+                        <label><input type="checkbox" name="preferencias[]" value="relojes"> Relojes</label>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn">Registrarse</button>
+            </form>
+        </div>
+        
+        <div class="benefits">
+            <h3>Beneficios de la Membresía</h3>
+            <ul>
+                <li><i class="fas fa-gem"></i> Descuentos exclusivos</li>
+                <li><i class="fas fa-birthday-cake"></i> Regalo de cumpleaños</li>
+                <li><i class="fas fa-earlybirds"></i> Acceso anticipado a nuevas colecciones</li>
+                <li><i class="fas fa-shipping-fast"></i> Envío gratuito en todas tus compras</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="contacto" class="contact-section">
+        <h2>Contáctanos</h2>
+        <div class="contact-info">
+            <p><i class="fas fa-map-marker-alt"></i> Av. Ciudad de Cali #12 - 53, Bogotá Distrito Capital</p>
+            <p><i class="fas fa-phone"></i> +57 234 567 890</p>
+            <p><i class="fas fa-envelope"></i> info@diamantejoyeria.com</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Joyería Diamante. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
