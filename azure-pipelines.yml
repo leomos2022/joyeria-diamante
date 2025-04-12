@@ -2,8 +2,7 @@ trigger:
   - master
 
 variables:
-  vmImage: 'ubuntu-latest'
-  azureSubscription: 'tu-suscripcion-azure'
+  azureSubscription: 'leomos2022/joyeria-diamante'  # ← Usa el nombre que creaste
   webAppName: 'joyeria-diamante-app'
   resourceGroup: 'joyeria-diamante-rg'
 
