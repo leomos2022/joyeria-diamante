@@ -4,7 +4,8 @@ trigger:
       - master  
 
 variables:
-  azureSubscription: 'leomos2022/joyeria-diamante'  # ← Usa el nombre que creaste
+  azureSubscription: '
+24853a30-f46a-4a8e-8826-8ed8922b2edb'  
   webAppName: 'joyeria-diamante-app'
   resourceGroup: 'joyeria-diamante-rg'
 
