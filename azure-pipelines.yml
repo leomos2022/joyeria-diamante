@@ -1,48 +1,25 @@
-name: $(Date:yyyyMMdd)$(Rev:.r)
 trigger:
-  branches:
-    include:
-      - master  # o 'main' según tu rama principal
+- master
 
-variables:
-  vmImageName: 'ubuntu-latest'
-  phpVersion: '7.4'
+pool:
+  vmImage: 'ubuntu-latest'
 
-stages:
-  - stage: Build
-    displayName: 'Build y validación'
-    jobs:
-    - job: Validate
-      displayName: 'Validar código'
-      pool:
-        vmImage: $(vmImageName)
-      steps:
-      - checkout: self
-      
-      - script: |
-          echo "Validando HTML..."
-          find . -name "*.html" -type f -exec echo "Analizando {}" \;
-        displayName: 'Validar HTML'
-      
-      - script: |
-          echo "Instalando PHP $(phpVersion)..."
-          sudo apt-get update
-          sudo apt-get install -y php$(phpVersion)
-        displayName: 'Configurar PHP'
+steps:
+- checkout: self
 
-  - stage: Deploy
-    displayName: 'Despliegue en staging'
-    dependsOn: Build
-    condition: succeeded()
-    jobs:
-    - deployment: DeployToStaging
-      environment: 'staging'
-      strategy:
-        runOnce:
-          deploy:
-            steps:
-            - script: |
-                echo "Simulando despliegue..."
-                echo "Los archivos estarían siendo desplegados aquí"
-                echo "ConnectionString: $(AZURE_SQL_CONNECTION_STRING)"
-              displayName: 'Desplegar aplicación'
+- script: |
+    echo "Instalando dependencias básicas..."
+    sudo apt-get update
+    sudo apt-get install -y php
+    php -v
+  displayName: 'Instalar PHP'
+
+- script: |
+    echo "Validando archivos HTML..."
+    find . -name "*.html" -exec echo "Archivo encontrado: {}" \;
+  displayName: 'Validar HTML'
+
+- script: |
+    echo "Simulando despliegue..."
+    echo "¡Pipeline ejecutado con éxito!"
+  displayName: 'Paso final'
