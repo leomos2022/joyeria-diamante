@@ -1,5 +1,7 @@
 trigger:
-  - master
+  branches:
+    include:
+      - master  
 
 variables:
   azureSubscription: 'leomos2022/joyeria-diamante'  # ← Usa el nombre que creaste
