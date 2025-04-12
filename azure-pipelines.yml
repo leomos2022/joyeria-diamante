@@ -1,0 +1,9 @@
+trigger:
+  - master  # Rama que activa el pipeline
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  - script: echo "¡Pipeline ejecutado!"
+    displayName: 'Paso de prueba'
