@@ -1,0 +1,53 @@
+trigger:
+  - master
+
+variables:
+  vmImage: 'ubuntu-latest'
+  azureSubscription: 'tu-suscripcion-azure'
+  webAppName: 'joyeria-diamante-app'
+  resourceGroup: 'joyeria-diamante-rg'
+
+stages:
+  - stage: Build
+    jobs:
+      - job: Build_Test
+        pool:
+          vmImage: $(vmImage)
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '16.x'
+            
+          - script: |
+              npm install -g serve
+              echo "##vso[task.prependpath]$(npm bin)"
+            displayName: 'Instalar dependencias'
+            
+          - script: |
+              echo "Validando HTML..."
+              npm install -g html-validator
+              html-validator --url http://localhost:3000 --verbose
+            displayName: 'Validar HTML'
+            
+          - task: PublishBuildArtifacts@1
+            inputs:
+              PathtoPublish: '$(Build.SourcesDirectory)'
+              ArtifactName: 'drop'
+              publishLocation: 'Container'
+
+  - stage: Deploy_Staging
+    dependsOn: Build
+    jobs:
+      - deployment: Deploy
+        environment: 'staging'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: AzureWebApp@1
+                  inputs:
+                    azureSubscription: $(azureSubscription)
+                    appType: 'webAppLinux'
+                    appName: $(webAppName)
+                    runtimeStack: 'PHP|7.4'
+                    package: '$(Pipeline.Workspace)/drop'
